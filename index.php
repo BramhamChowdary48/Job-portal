@@ -1,31 +1,33 @@
 <?php 
-require_once("../include/initialize.php");
- if(!isset($_SESSION['ADMIN_USERID'])){
-    redirect(web_root."admin/login.php");
-  }
-
-$content='home.php';
-$view = (isset($_GET['page']) && $_GET['page'] != '') ? $_GET['page'] : '';
-switch ($view) {
-  case '1' :
-        // $title="Home"; 
-    // $content='home.php'; 
-    if ($_SESSION['ADMIN_ROLE']=='Cashier') {
-        # code...
-      redirect('orders/');
-
-    } 
-    if ($_SESSION['ADMIN_ROLE']=='Administrator') {
-        # code... 
-
-      redirect('meals/');
-
-    } 
-    break;  
-  default :
- 
-      $title="Home"; 
-    $content ='home.php';    
+require_once("../include/initialize.php");  
+if (!isset($_SESSION['APPLICANTID'])) {
+	# code...
+	redirect(web_root.'index.php');
 }
-require_once("theme/templates.php");
+$view = (isset($_GET['view']) && $_GET['view'] != '') ? $_GET['view'] : '';
+switch ($view) { 
+	case 'appliedjobs' :
+	    $title="Profile";	
+        $_SESSION['appliedjobs']	='active' ; 
+		$content ='Profile.php';
+		break;
+
+	case 'notification' :
+	    $title="Profile";	
+        $_SESSION['notification']	='active' ; 
+		$content ='Profile.php';
+		break;
+  
+	case 'accounts' : 
+	    $title="Profile";	
+        $_SESSION['accounts']	='active' ;
+        $content ='Profile.php';
+		break;
+	 
+	default : 
+	    $title="Profile";	
+        $_SESSION['appliedjobs']	='active' ;
+		$content ='Profile.php';		
+}
+require_once("../theme/templates.php");
 ?>

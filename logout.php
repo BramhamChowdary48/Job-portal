@@ -1,24 +1,19 @@
 <?php 
-require_once '../include/initialize.php';
+require_once 'include/initialize.php';
 // Four steps to closing a session
 // (i.e. logging out)
 
 // 1. Find the session
 @session_start();
 
-// 2. Unset all the session variables
-// unset( $_SESSION['USERID'] );
-// unset( $_SESSION['FULLNAME'] );
-// unset( $_SESSION['USERNAME'] );
-// unset( $_SESSION['PASS'] );
-// unset( $_SESSION['ROLE'] );
- 
+ // $sql="INSERT INTO `tbllogs` (`USERID`,USERNAME, `LOGDATETIME`, `LOGROLE`, `LOGMODE`) 
+ //          VALUES (".$_SESSION['USERID'].",'".$_SESSION['FULLNAME']."','".date('Y-m-d H:i:s')."','".$_SESSION['UROLE']."','Logged out')";
+ //          mysql_query($sql) or die(mysql_error());
 
-unset($_SESSION['ADMIN_USERID']);  
-unset($_SESSION['ADMIN_FULLNAME']); 
-unset($_SESSION['ADMIN_USERNAME']);  
-unset($_SESSION['ADMIN_ROLE']); 
+// 2. Unset all the session variables
+unset($_SESSION['APPLICANTID']);
+unset($_SESSION['USERNAME']);    
 // 4. Destroy the session
 // session_destroy();
-redirect(web_root."admin/login.php?logout=1");
+redirect(web_root."index.php");
 ?>

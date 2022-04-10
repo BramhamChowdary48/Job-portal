@@ -1,310 +1,303 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title><?php
-                // $query = "SELECT * FROM `tbltitle` WHERE TItleID=1";
-                // $res = mysql_query($query) or die(mysql_error());
-                // $viewTitle = mysql_fetch_assoc($res);
-                // echo $viewTitle['Title'];
-            ?>
-        </title>
-       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <!-- Bootstrap 3.3.5 -->
-        <link rel="stylesheet" href="<?php echo web_root;?>bootstrap/css/bootstrap.min.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/font-awesome/css/font-awesome.min.css">
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ERIS / <?php echo $title;?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="http://webthemez.com" />
+<!-- css -->
+<link href="<?php echo web_root; ?>plugins/home-plugins/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<?php echo web_root; ?>plugins/home-plugins/css/fancybox/jquery.fancybox.css" rel="stylesheet"> 
+<link href="<?php echo web_root; ?>plugins/home-plugins/css/flexslider.css" rel="stylesheet" /> 
+<link href="<?php echo web_root; ?>plugins/home-plugins/css/style.css" rel="stylesheet" />
+<!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/dataTables.bootstrap.css">  --> 
+<link rel="stylesheet" href="<?php echo web_root;?>plugins/font-awesome/css/font-awesome.min.css"> 
 
-        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/dataTables.bootstrap.css">  -->
-        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css">  -->
-
-        <!-- Ionicons -->
-        <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
-        <!-- Theme style -->
-        <link rel="stylesheet" href="<?php echo web_root;?>dist/css/AdminLTE.min.css">
-        <!-- AdminLTE Skins. Choose a skin from the css/skins
-             folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="<?php echo web_root;?>dist/css/skins/_all-skins.min.css">
-        <!-- iCheck -->
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/iCheck/flat/blue.css">
-        <!-- Morris chart -->
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/morris/morris.css">
-        <!-- jvectormap -->
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-        <!-- Date Picker -->
-        <link href="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css">  
-
-        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/datepicker/datepicker3.css"> -->
-        <!-- Daterange picker -->
-        <!-- <link rel="stylesheet" href="<?php echo web_root;?>plugins/daterangepicker/daterangepicker-bs3.css"> -->
-        <!-- bootstrap wysihtml5 - text editor -->
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+<link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css"> 
+<link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables_themeroller.css"> 
+<!-- datetime picker CSS -->
+<link href="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="<?php echo web_root; ?>plugins/datepicker/datepicker3.css" rel="stylesheet" media="screen">
  
-    </head>
-
- <body class="hold-transition skin-blue fixed sidebar-mini">
-<div class="wrapper">
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="<?php echo web_root;?>/admin/" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>ERIS</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>ERIS</b></span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<style type="text/css">
  
-          <?php
-              $user = New User();
-              $singleuser = $user->single_user($_SESSION['ADMIN_USERID']);
-
-          ?>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu" style="padding-right: 15px;"  >
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $singleuser->FULLNAME; ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header"> 
-                <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="img-circle" alt="User Image" />  
-              </li> 
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="<?php echo web_root.'admin/user/index.php?view=view&id='.$_SESSION['ADMIN_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo web_root ;?>admin/logout.php" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-
-
- <div class="modal fade" id="menuModal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button class="close" data-dismiss="modal" type=
-                                    "button">x</button>
-
-                                    <h4 class="modal-title" id="myModalLabel">Image.</h4>
-                                </div>
-
-                                <form action="<?php echo web_root; ?>admin/user/controller.php?action=photos" enctype="multipart/form-data" method=
-                                "post">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <div class="rows">
-                                                <div class="col-md-12">
-                                                    <div class="rows">
-                                                        <div class="col-md-8"> 
-                                                            <input class="mealid" type="hidden" name="mealid" id="mealid" value="">
-                                                              <input name="MAX_FILE_SIZE" type="hidden" 
-                                                              value="1000000"> 
-                                                              <input id="photo" name="photo" type="file">
-                                                        </div>
-
-                                                        <div class="col-md-4"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button class="btn btn-default" data-dismiss="modal" type=
-                                        "button">Close</button> <button class="btn btn-primary"
-                                        name="savephoto" type="submit">Upload Photo</button>
-                                    </div>
-                                </form>
-                            </div><!-- /.modal-content-->
-                        </div><!-- /.modal-dialog -->
-                    </div><!-- /.modal -->  
-
-
-
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      
- 
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu"> 
-        <li  class="<?php echo (currentpage() == 'index.php') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>  
-          </a> 
-        </li> 
-        <li class="<?php echo (currentpage() == 'company') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/company/">
-            <i class="fa fa-building"></i> <span>Company</span> 
-          </a>
-        </li>
-        <li class="<?php echo (currentpage() == 'vacancy') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/vacancy/">
-            <i class="fa fa-suitcase"></i> <span>Vacancy</span> 
-          </a>
-        </li>
-        <li class="<?php echo (currentpage() == 'employee') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/employee/">
-            <i class="fa fa-users"></i> <span>Employee</span> 
-          </a>
-        </li> 
-        <li class="<?php echo (currentpage() == 'applicants') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/applicants/">
-            <i class="fa fa-users"></i> <span>Applicants</span> 
-            <span class="label label-primary pull-right">
-              <?php
-                $sql = "SELECT count(*) as 'APPL' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION`=1";
-                $mydb->setQuery($sql);
-                $pending = $mydb->loadSingleResult();
-                echo $pending->APPL;
-              ?>
-            </span>
-          </a>
-        </li> 
-        <li class="<?php echo (currentpage() == 'category') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/category/">
-            <i class="fa fa-list"></i> <span>Category</span>  
-          </a>
-        </li> 
-       <!--  <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo web_root ;?>pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="<?php echo web_root ;?>pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
-        </li> -->
-         
-         <li class="<?php echo (currentpage() == 'user') ? "active" : false;?>">
-          <a href="<?php echo web_root; ?>admin/user/">
-            <i class="fa fa-user"></i> <span>Manage Users</span> </a>
-        </li>
-        
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-
-  <section class="content-header">
-      <h1>
-        <?php echo isset($title) ? $title : ''; ?>
-        <!-- <small>it all starts here</small> -->
-      </h1>
-      <ol class="breadcrumb">
-        <?php
-
-          if ($title!='Home') {
-            # code... 
-            $active_title = '';
-            if (isset($_GET['view'])) {
-              # code...
-              $active_title = '<li class='.$active_title.'><a href="index.php">'.$title.'</a></li>';
-            }else{
-              $active_title = '<li class='.$active_title.'>'.$title.'</li>';
-            }
-            echo '<li><a href='.web_root.'admin/><i class="fa fa-dashboard"></i> Home</a></li>';
-            echo  $active_title;
-            echo  isset($_GET['view']) ? '<li class="active">'.$_GET['view'].'</li>' : '';
-          } 
-
-
-        ?>
-      </ol>
-    </section>
-         <section class="content">
-
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="box">
-                <div class="box-body">
-
-              <?php 
-               check_message();
-               require_once $content; 
-               ?> 
-             </div>
-             </div>
-           </div>
-         </div>
-         </section>
- </div>
-  <!-- /.content-wrapper -->
-
-
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.2
-    </div>
-    <strong>Copyright &copy; 2021 <a href="#">CampCodes</a>.</strong> All rights
-    reserved.
-  </footer>
-
+  #content {
+    min-height: 400px;
+    color: #000;
+  }
   
+  .contentbody p {
+    font-weight: bold;
+  }
+  .login a:hover{ 
+    color: #00bcd4;
+    text-decoration: none;
 
-    </body>
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/jQuery/jQuery-2.1.4.min.js"> </script>
-      <script type="text/javascript" src="<?php echo web_root; ?>bootstrap/js/bootstrap.min.js" ></script>
-      <script src="<?php echo web_root;?>dist/js/app.min.js"></script> 
+  }
+  .login a:focus{ 
+    color: #00bcd4;
+    text-decoration: none;
 
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datepicker.js" ></script> 
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+  }
+  .login a { 
+     font-size: 14px;
+    color: #fff;
+    padding:0px;
+  }
+</style>
 
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/dataTables/dataTables.bootstrap.min.js" ></script> 
-      <script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script> 
+</head>
+<body>
+<div id="wrapper" class="home-page">
+ 
+  <!-- start header -->
+  <header>
+        <div class="topbar navbar-fixed-top">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">      
+                <p class="pull-left hidden-xs"><i class="fa fa-phone"></i>Tel No. 9121664741</p>
+                <?php if (isset($_SESSION['APPLICANTID'])) { 
 
-      <script src="<?php echo web_root; ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+                    $sql = "SELECT count(*) as 'COUNTNOTIF' FROM `tbljob` ORDER BY `DATEPOSTED` DESC";
+                    $mydb->setQuery($sql);
+                    $showNotif = $mydb->loadSingleResult();
+                    $notif =isset($showNotif->COUNTNOTIF) ? $showNotif->COUNTNOTIF : 0;
 
-      <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.js"></script> 
-      <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script> 
-      <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script> 
 
-   <!--      <script src="<?php echo web_root; ?>admin/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo web_root; ?>admin/js/dataTables.bootstrap.min.js"></script>
- <script type="text/javascript" src="<?php echo web_root; ?>js/jquery-1.10.2.js"></script>       
-        <script type="text/javascript" src="<?php echo web_root; ?>js/jquery.mixitup.min.js" ></script>
-        <script type="text/javascript" src="<?php echo web_root; ?>js/main.js" ></script> 
-        <script type="text/javascript" src="<?php echo web_root; ?>js/janobe.js" ></script> 
-        <script src="<?php echo web_root; ?>admin/js/ekko-lightbox.js"></script>
-        <script src="<?php echo web_root; ?>admin/js/lightboxfunction.js"></script> 
-  -->
-<!-- jQuery 2.1.4 --> 
+                    $applicant = new Applicants();
+                    $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
 
-<script>
-  $(function () {
+                    $sql ="SELECT count(*) as 'COUNT' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION`=0 AND `HVIEW`=0 AND `APPLICANTID`='{$appl->APPLICANTID}'";
+                    $mydb->setQuery($sql);
+                    $showMsg = $mydb->loadSingleResult();
+                    $msg =isset($showMsg->COUNT) ? $showMsg->COUNT : 0;
+
+                    echo ' <p class="pull-right login"><a title="View Notification(s)" href="'.web_root.'applicant/index.php?view=notification"> <i class="fa fa-bell-o"></i> <span class="label label-success">'.$notif.'</span></a> | <a title="View Message(s)" href="'.web_root.'applicant/index.php?view=message"> <i class="fa fa-envelope-o"></i> <span class="label label-success">'.$msg.'</span></a> | <a title="View Profile" href="'.web_root.'applicant/"> <i class="fa fa-user"></i> Howdy, '. $appl->FNAME. ' '.$appl->LNAME .' </a> | <a href="'.web_root.'logout.php">  <i class="fa fa-sign-out"> </i>Logout</a> </p>';
+
+                    }else{ ?>
+                      <p   class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i> Login </a></p>
+                <?php } ?>
+              
+              </div>
+            </div>
+          </div>
+        </div> 
+        <div style="min-height: 30px;"></div>
+        <div class="navbar navbar-default navbar-static-top" > 
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="<?php echo web_root; ?>index.php">Find Future<!-- <img src="<?php echo web_root; ?>plugins/home-plugins/img/logo.png" alt="logo"/> --></a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+                        <li class="<?php echo !isset($_GET['q'])? 'active' :''?>"><a href="<?php echo web_root; ?>index.php">Home</a></li> 
+                        <li class="dropdown">
+                          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Job Search <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                              <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='advancesearch'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=advancesearch">Advance Search</a></li>
+                              <li><a href="<?php echo web_root; ?>index.php?q=search-company">Job By Company</a></li>
+                              <li><a href="<?php echo web_root; ?>index.php?q=search-function">Job By Function</a></li>
+                              <li><a href="<?php echo web_root; ?>index.php?q=search-jobtitle">Job By Title</a></li>
+                         <!--      <li><a href="#">Job for Women</a></li>
+                              <li><a href="#">Job for Men</a></li> -->
+                          </ul>
+                       </li> 
+                      <li class="dropdown <?php  if(isset($_GET['q'])) { if($_GET['q']=='category'){ echo 'active'; }else{ echo ''; }}  ?>">
+                          <a href="#" data-toggle="dropdown" class="dropdown-toggle">Popular Jobs <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                            <?php 
+                            $sql = "SELECT * FROM `tblcategory` LIMIT 10";
+                            $mydb->setQuery($sql);
+                            $cur = $mydb->loadResultList();
+
+                            foreach ($cur as $result) {
+                              # code...
+
+                                if (isset($_GET['search'])) {
+                                  # code...
+                                   if ($result->CATEGORY==$_GET['search']) {
+                                     # code...
+                                    $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
+                                   }else{
+                                    $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
+                                   }
+                                }else{
+                                    $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
+                                } 
+
+                                echo $viewresult;
+
+                              }
+
+                            ?> 
+                          </ul>
+                       </li> 
+                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='company'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=company">Company</a></li>
+                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='hiring'){ echo 'active'; }else{ echo ''; }} ?>"><a href="<?php echo web_root; ?>index.php?q=hiring">Hiring Now</a></li>
+                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='About'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=About">About Us</a></li>
+                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='Contact'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=Contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  </header>
+  <!-- end header -->  
+
+  <?php
+    if (!isset($_SESSION['APPLICANTID'])) { 
+      include("login.php");
+    }
+  ?>
+      <?php
+
+      if (isset($_GET['q'])) {
+        # code...
+        echo '<section id="inner-headline">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="pageTitle">'.$title.'</h2>
+                    </div>
+                </div>
+            </div>
+            </section>';
+      }
+
+
+       require_once $content;
+
+        ?>   
+ 
+
+  <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="widget">
+          <h5 class="widgetheading">Our Contact</h5>
+          <address>
+          <strong>Our Company</strong><br>
+          JC Main Road, Near Silnile tower<br>
+           Pin-21542 NewYork US.</address>
+          <p>
+            <i class="icon-phone"></i> (123) 456-789 - 1255-12584 <br>
+            <i class="icon-envelope-alt"></i> jannopalacios@gmail.com
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="widget">
+          <h5 class="widgetheading">Quick Links</h5>
+          <ul class="link-list">
+            <li><a href="<?php echo web_root; ?>index.php">Home</a></li>
+            <li><a href="<?php echo web_root; ?>index.php?q=company">Company</a></li>
+            <li><a href="<?php echo web_root; ?>index.php?q=hiring">Hiring</a></li>
+            <li><a href="<?php echo web_root; ?>index.php?q=About">About us</a></li>
+            <li><a href="<?php echo web_root; ?>index.php?q=Contact">Contact us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="widget">
+          <h5 class="widgetheading">Latest posts</h5>
+          <ul class="link-list">
+            <?php 
+                  $sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID`   ORDER BY DATEPOSTED DESC LIMIT 3" ;
+                  $mydb->setQuery($sql);
+                  $cur = $mydb->loadResultList();
+
+
+                  foreach ($cur as $result) {
+                    echo ' <li><a href="'.web_root.'index.php?q=viewjob&search='.$result->JOBID.'">'.$result->COMPANYNAME . '/ '. $result->OCCUPATIONTITLE .'</a></li>';
+                  } 
+              ?> 
+          </ul>
+        </div>
+      </div>
+<!--       <div class="col-md-3 col-sm-3">
+        <div class="widget">
+          <h5 class="widgetheading">Recent News</h5>
+          <ul class="link-list">
+            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+            <li><a href="#">Pellentesque et pulvinar enim. Quisque at tempor ligula</a></li>
+            <li><a href="#">Natus error sit voluptatem accusantium doloremque</a></li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div id="sub-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="copyright">
+            <p>
+              <span>&copy; CampCodes 2021 All right reserved.  
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <ul class="social-network">
+            <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+            <li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </footer>
+</div>
+<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+<!-- javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.easing.1.3.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/bootstrap.min.js"></script>
+ 
+
+<script type="text/javascript" src="<?php echo web_root; ?>plugins/dataTables/dataTables.bootstrap.min.js" ></script>  
+<script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script> 
+
+<script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+
+<script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.js"></script> 
+<script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script> 
+<script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script> 
+
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.fancybox.pack.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.fancybox-media.js"></script>  
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.flexslider.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/animate.js"></script>
+
+
+<!-- Vendor Scripts -->
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/modernizr.custom.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.isotope.min.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.magnific-popup.min.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/animate.js"></script>
+<script src="<?php echo web_root; ?>plugins/home-plugins/js/custom.js"></script> 
+<!-- <script src="<?php echo web_root; ?>plugins/paralax/paralax.js"></script>  -->
+
+ <script type="text/javascript">
+   
+     $(function () {
     $("#dash-table").DataTable();
     $('#dash-table2').DataTable({
       "paging": true,
@@ -315,6 +308,48 @@
       "autoWidth": false
     });
   });
+
+
+     $("#btnlogin").click(function(){
+        var username = document.getElementById("user_email");
+        var pass = document.getElementById("user_pass");
+
+        // alert(username.value)
+        // alert(pass.value)
+        if(username.value=="" && pass.value==""){   
+          $('#loginerrormessage').fadeOut(); 
+                $('#loginerrormessage').fadeIn();  
+                $('#loginerrormessage').css({ 
+                        "background" :"red",
+                        "color"      : "#fff",
+                        "padding"    : "5px;"
+                    }); 
+          $("#loginerrormessage").html("Invalid Username and Password!");
+          //  $("#loginerrormessage").css(function(){ 
+          //   "background-color" : "red";
+          // });
+        }else{
+
+          $.ajax({    //create an ajax request to load_page.php
+              type:"POST",  
+              url: "process.php?action=login",    
+              dataType: "text",  //expect html to be returned  
+              data:{USERNAME:username.value,PASS:pass.value},               
+              success: function(data){   
+                // alert(data);
+                $('#loginerrormessage').fadeOut(); 
+                $('#loginerrormessage').fadeIn();  
+                $('#loginerrormessage').css({ 
+                        "background" :"red",
+                        "color"      : "#fff",
+                        "padding"    : "5px;"
+                    }); 
+               $('#loginerrormessage').html(data);   
+              } 
+              }); 
+          }
+        });
+
 
 $('input[data-mask]').each(function() {
   var input = $(this);
@@ -348,8 +383,8 @@ $('.date_picker').datetimepicker({
   forceParse: 0 
 
 });
-
-
-</script>
+ </script>
+ 
+</body>
 </html>
  
